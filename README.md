@@ -7,6 +7,6 @@ For a Word Segmentation with Spelling Correction use WordSegmentation and Lookup
 
 `
 Example
-Input: thequickbrownfoxjumpsoverthelazydog
+Input: thequickbrownfoxjumpsoverthelazydog<br>
 Output: the quick brown fox jumps over the lazy dog
 `
