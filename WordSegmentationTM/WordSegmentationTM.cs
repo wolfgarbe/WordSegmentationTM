@@ -112,13 +112,13 @@ public class WordSegmentationTM
                 int resultIndex = prefixIndex + i;
 
                 //set values in first loop
-                if ((j == 0) || (i == maxSegmentationWordLength))
+                if (j == 0)
                 {
                     //segmentedString, probabilityLogSum
                     compositions[resultIndex] = (part1, ProbabilityLogPart1);
                 }
                 //replace values if better probabilityLogSum
-                else if (compositions[resultIndex].probabilityLogSum < compositions[prefixIndex].probabilityLogSum + ProbabilityLogPart1)
+                else if ((i == maxSegmentationWordLength) || (compositions[resultIndex].probabilityLogSum < compositions[prefixIndex].probabilityLogSum + ProbabilityLogPart1))
                 {
                     //segmentedString, probabilityLogSum
                     compositions[resultIndex] = (compositions[prefixIndex].segmentedString + " " + part1, compositions[prefixIndex].probabilityLogSum + ProbabilityLogPart1);
