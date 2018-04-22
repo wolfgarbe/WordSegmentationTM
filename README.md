@@ -26,6 +26,7 @@ For a Word Segmentation with Spelling Correction use WordSegmentation and Lookup
 * For password analysis, the extraction of terms from passwords can be required.
 * For Speech recognition, if spaces between words are not properly recognized in spoken language.
 * Automatic CamelCasing of programming variables.
+* Applications beyond Natural Language processing, e.g. segmenting DNA sequence into words
 
 #### Performance 
 <br>
