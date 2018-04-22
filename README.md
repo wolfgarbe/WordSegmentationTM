@@ -29,6 +29,7 @@ For a Word Segmentation with Spelling Correction use WordSegmentation and Lookup
 * Applications beyond Natural Language processing, e.g. segmenting DNA sequence into words
 
 #### Performance 
+4 milliseconds for segmenting an 185 char string into 53 words (single core on 2012 Macbook Pro)
 <br>
 
 #### Blog Posts: Algorithm, Benchmarks, Applications
