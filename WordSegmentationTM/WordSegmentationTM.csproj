@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Authors>Wolf Garbe &lt;wolf.garbe@faroo.com&gt;</Authors>
+    <Company>Wolf Garbe &lt;wolf.garbe@faroo.com&gt;</Company>
+    <Product>WordSegmentTM</Product>
+    <Description>Fast Word Segmentation using a Triangular Matrix approach</Description>
+    <Copyright>Copyright (C) 2018 Wolf Garbe</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/wolfgarbe/WordSegmentationTM</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/wolfgarbe</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>word-segmentation, word-segment, text-segmentation, spelling, spelling-correction, symspell</PackageTags>
+    <Version>1.0</Version>
+  </PropertyGroup>
+  
+   <ItemGroup>
+    <None Remove="frequency_dictionary_en_82_765.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="frequency_dictionary_en_82_765.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSegmentationTM", "WordSegmentationTM\WordSegmentationTM.csproj", "{9AFD5522-0FB8-4BBB-B043-138234766E1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSegmentationTM.Demo", "WordSegmentationTM.Demo\WordSegmentationTM.Demo.csproj", "{C757EAC9-9090-435C-84C1-251E5BAA8EE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AFD5522-0FB8-4BBB-B043-138234766E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AFD5522-0FB8-4BBB-B043-138234766E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AFD5522-0FB8-4BBB-B043-138234766E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AFD5522-0FB8-4BBB-B043-138234766E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C757EAC9-9090-435C-84C1-251E5BAA8EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C757EAC9-9090-435C-84C1-251E5BAA8EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C757EAC9-9090-435C-84C1-251E5BAA8EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C757EAC9-9090-435C-84C1-251E5BAA8EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDA6BE2A-8681-4A8C-9378-049FDD7AB174}
+	EndGlobalSection
+EndGlobal
