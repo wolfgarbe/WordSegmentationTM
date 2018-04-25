@@ -3,6 +3,7 @@ WordSegmentationTM<br>
 ========
 
 Fast Word Segmentation using a Triangular Matrix approach.
+*The Triangular Matrix algorithm is faster (2x) and has a lower memory consumption (constant O(1) vs. linear O(n)).*
 
 For a Word Segmentation using a Dynamic Programming approach have a look at [WordSegmentationDP](https://github.com/wolfgarbe/WordSegmentationDP).
 
