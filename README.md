@@ -2,12 +2,12 @@ WordSegmentationTM<br>
 [![MIT License](https://img.shields.io/github/license/wolfgarbe/WordSegmentationTM.svg)](https://github.com/wolfgarbe/WordSegmentationTM/blob/master/LICENSE)
 ========
 
-Fast Word Segmentation using a Triangular Matrix approach.<br>
+Fast **Word Segmentation using a Triangular Matrix** approach.<br>
 *The Triangular Matrix algorithm is faster (2x) and has a lower memory consumption (constant O(1) vs. linear O(n)).*
 
-For a Word Segmentation using a Dynamic Programming approach have a look at [WordSegmentationDP](https://github.com/wolfgarbe/WordSegmentationDP).
+For a **Word Segmentation using a Dynamic Programming** approach have a look at [WordSegmentationDP](https://github.com/wolfgarbe/WordSegmentationDP).
 
-For a Word Segmentation with Spelling Correction use WordSegmentation and LookupCompound of the [SymSpell library](https://github.com/wolfgarbe/SymSpell).
+For a **Word Segmentation with Spelling Correction** use WordSegmentation and LookupCompound of the [SymSpell library](https://github.com/wolfgarbe/SymSpell).
 
 ### Example
 `Input: thequickbrownfoxjumpsoverthelazydog`
