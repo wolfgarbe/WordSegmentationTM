@@ -1,6 +1,6 @@
 ﻿// WordSgmentationTM: Fast Word Segmentation with Triangular Matrix 
 // Copyright (C) 2018 Wolf Garbe
-// Version: 1.0
+// Version: 1.1
 // Author: Wolf Garbe wolf.garbe@faroo.com
 // Maintainer: Wolf Garbe wolf.garbe@faroo.com
 // URL: //https://github.com/wolfgarbe/WordSegmentationTM
@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 public class WordSegmentationTM
 {
@@ -69,7 +70,6 @@ public class WordSegmentationTM
 
         return true;
     }
-
     
     /// <summary>Find best word segmentation for input string.</summary>
     /// <param name="input">The string being word segmented.</param>
@@ -79,30 +79,38 @@ public class WordSegmentationTM
         return Segment(input, maximumDictionaryWordLength);
     }
     
-
     /// <summary>Find best word segmentation for input string.</summary>
     /// <param name="input">The string being word segmented.</param>
     /// <param name="maxSegmentationWordLength">The maximum word length that should be considered.</param>	
     /// <returns>A tuple representing the suggested word segmented text and the sum of logarithmic word occurence probabilities.</returns> 
     public (string segmentedString, decimal probabilityLogSum) Segment(string input, int maxSegmentationWordLength)
     {
-        (string segmentedString, decimal probabilityLogSum)[] compositions = new(string segmentedString, decimal probabilityLogSum)[Math.Min(maxSegmentationWordLength, input.Length)];
+        int arraySize = Math.Min(maxSegmentationWordLength, input.Length);
+        int arrayWidth = ((input.Length - 1) >> 6) + 1; // /64 bit
+        int arrayWidthByte = arrayWidth << 3; //*8 byte
+        //instead of storing the segmented strings, we store only an array of potential space positions: bit set == space (1 bit instead of 1 char)
+        ulong[,] segmentedSpaceBits = new ulong[arraySize, arrayWidth];
+        decimal[] probabilityLogSum = new decimal[arraySize];
+        int circularIndex = -1;
 
-        //Triangular Matrix of dimensions n*m : n=input.length; m=Min(input.length,maximum word length) 
-        //outer loop: matrix row
-        //generate/test all possible part start positions
+        //A Triangular Matrix of parts is generated (increasing part lengths), organized as Circular Array
+        //with nested loops of dimensions n*m : n=input.length; m=Min(input.length,maximum word length) 
+
+        //outer loop (column): all possible part start positions
         for (int j = 0; j < input.Length; j++)
         {
-            //position which holds the best segmentation for the prefix, which will be combined with part1
-            (string segmentedString, decimal probabilityLogSum) prefix = compositions[0];
+            int spaceUlongIndex = (j - 1) >> 6; // /64 bit
+            int arrayCopyByte = Math.Min(((spaceUlongIndex + 1) << 3), arrayWidthByte); // *8 byte
 
-            //remainder length = input.Length - j
+            //best segmentation for the prefix of length j will be combined with + " " + part1; set space bit in row 0
+            if (j > 0) segmentedSpaceBits[circularIndex, spaceUlongIndex] |= ((ulong)1 << ((j - 1) & 0x3f)); // %64 bit
+
+            //inner loop (row): all possible part lengths (from start position): part can't be bigger than longest word in dictionary (other than long unknown word)
             int imax = Math.Min(input.Length - j, maxSegmentationWordLength);
-
-            //inner loop : matrix column (triangular: loop becomes shorter as remainder becomes shorter)
-            //generate/test all possible part lengths: part can't be bigger than longest word in dictionary (other than long unknown word)
             for (int i = 1; i <= imax; i++)
             {
+                int destinationIndex = ((i + circularIndex) % arraySize);
+
                 //Calculate the Naive Bayes probability of a sequence of words (iterative in logarithmic scale)
                 string part1 = input.Substring(j, i);
                 decimal ProbabilityLogPart1 = 0;
@@ -113,20 +121,29 @@ public class WordSegmentationTM
                 //set values in first loop
                 if (j == 0)
                 {
-                    compositions[i - 1] = (part1, ProbabilityLogPart1);
+                    probabilityLogSum[destinationIndex] = ProbabilityLogPart1;
                 }
                 //replace values if better probabilityLogSum
-                else if ((i == maxSegmentationWordLength) || (compositions[i].probabilityLogSum < prefix.probabilityLogSum + ProbabilityLogPart1))
+                else if ((i == maxSegmentationWordLength) || (probabilityLogSum[destinationIndex] < probabilityLogSum[circularIndex] + ProbabilityLogPart1))
                 {
-                    compositions[i - 1] = (prefix.segmentedString + " " + part1, prefix.probabilityLogSum + ProbabilityLogPart1);
-                }
-                else
-                {
-                    compositions[i - 1] = compositions[i];
+                    System.Buffer.BlockCopy(segmentedSpaceBits, circularIndex * arrayWidthByte, segmentedSpaceBits, destinationIndex * arrayWidthByte, arrayCopyByte);
+                    probabilityLogSum[destinationIndex] = probabilityLogSum[circularIndex] + ProbabilityLogPart1;
                 }
             }
+
+            circularIndex++; if (circularIndex == arraySize) circularIndex = 0;
         }
-        return compositions[0];
+
+        //create segmented string result from input and segmentedSpaceBits
+        StringBuilder resultString = new StringBuilder(input.Length * 2);
+        int last = -1;
+        for (int i = 0; i <= input.Length - 2; i++) if ((segmentedSpaceBits[circularIndex, i >> 6] & ((ulong)1 << (i & 0x3f))) > 0)
+            {
+                resultString.Append(input, last + 1, i - last);
+                resultString.Append(' ');
+                last = i;
+            }
+        return (resultString.Append(input.Substring(last + 1)).ToString(), probabilityLogSum[circularIndex]);
     }
 
 }
