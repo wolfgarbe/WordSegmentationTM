@@ -9,10 +9,18 @@ For a **Word Segmentation using a Dynamic Programming** approach have a look at 
 
 For a **Word Segmentation with Spelling Correction** use WordSegmentation and LookupCompound of the [SymSpell library](https://github.com/wolfgarbe/SymSpell).
 
-### Example
-`Input: thequickbrownfoxjumpsoverthelazydog`
-<br><br>
-`Output: the quick brown fox jumps over the lazy dog`
+### Examples
+
+```diff
+- thequickbrownfoxjumpsoverthelazydog
++ the quick brown fox jumps over the lazy dog
+
+- iitwasabrightcolddayinaprilandtheclockswerestrikingthirteen
++ it was a bright cold day in april and the clocks were striking thirteen
+
+- itwasthebestoftimesitwastheworstoftimesitwastheageofwisdomitwastheageoffoolishness
++ it was the best of times it was the worst of times it was the age of wisdom it was the age of foolishness 
+```
 
 #### Applications
 
