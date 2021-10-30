@@ -1,10 +1,10 @@
 ﻿// WordSgmentationTM: Fast Word Segmentation with Triangular Matrix 
 // Copyright (C) 2018 Wolf Garbe
 // Version: 1.1
-// Author: Wolf Garbe wolf.garbe@faroo.com
-// Maintainer: Wolf Garbe wolf.garbe@faroo.com
+// Author: Wolf Garbe wolf.garbe@seekstorm.com
+// Maintainer: Wolf Garbe wolf.garbe@seekstorm.com
 // URL: //https://github.com/wolfgarbe/WordSegmentationTM
-// Description: https://towardsdatascience.com/fast-word-segmentation-for-noisy-text-2c2c41f9e8da
+// Description: https://seekstorm.com/blog/fast-word-segmentation-noisy-text/
 
 // MIT License
 // Copyright (c) 2018 Wolf Garbe
