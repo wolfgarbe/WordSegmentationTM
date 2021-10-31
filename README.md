@@ -43,7 +43,7 @@ For a **Word Segmentation with Spelling Correction** use WordSegmentation and Lo
 
 #### Blog Posts: Algorithm, Benchmarks, Applications
 [Fast Word Segmentation for noisy text](https://seekstorm.com/blog/fast-word-segmentation-noisy-text/)<br>
-[Sub-millisecond compound aware automatic spelling correction](https://medium.com/@wolfgarbe/symspellcompound-10ec8f467c9b)<br>
+[Sub-millisecond compound aware automatic spelling correction](https://seekstorm.com/blog/sub-millisecond-compound-aware-automatic.spelling-correction/)<br>
 [SymSpell vs. BK-tree: 100x faster fuzzy string search & spell checking](https://seekstorm.com/blog/symspell-vs-bk-tree/)
 <br>
 
